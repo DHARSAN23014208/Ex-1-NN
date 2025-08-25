@@ -37,12 +37,48 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
+import pandas as pd
+import seaborn as sns
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+df = pd.read_csv(r'C:\Users\admin\Desktop\Python_jupyter\ML LEARN\Neural_networks\Datasets\Churn_Modelling.csv')
+df.head()
+### Finding Missing Values
+df.isnull().sum()
+#Handling Missing values
+# As this value doesn't contains any null values we don't want to worry about handling missing values
+# Check for duplicates
+duplicates = df.duplicated()
+duplicates
+print(f'Number of duplicates rows: {duplicates.sum()}')    
+#Detect Outliers
+df.describe()
+df.head()
+df.drop(['Surname','Geography','Gender'],axis=1,inplace=True)
+#Normalize the dataset
+Scaler = MinMaxScaler()
+df1 = pd.DataFrame(Scaler.fit_transform(df))
+df1
+X = df1.iloc[:,:-1].values
+X
+y = df1.iloc[:,-1].values
+y
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2,random_state=25)
+X_train
+X_test
+
+```
 
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
-
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-4.png)
+![alt text](image-5.png)
 
 ## RESULT:
 Thus, Implementation of Data Preprocessing is done in python  using a data set downloaded from Kaggle.
